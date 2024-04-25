@@ -15,10 +15,11 @@ export const showMovies = (movie,moviesBox,index) => {
             <p>Release date : ${year}</p>
             <button class="details" >READ MORE</button>
           </div>
-                  
+
       </div>
   `;
 
+  //Delay the execution of the code inside the setTimeout until after the current call stack has cleared.
   setTimeout(()=> {
     let detailsButtons = document.querySelectorAll('.details');
     detailsButtons.forEach((button, buttonIndex) => {
@@ -69,18 +70,26 @@ export const showDetails = (movie,moviesBox) => {
         </div>     
       </div>
   `;
+
+  
+  setTimeout(() => {
+    const modal = document.getElementById('myModal')
+  
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+      window.onclick = null; // Remove the window onclick event listener
+    }
+  
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+        window.onclick = null; // Remove the window onclick event listener
+      }
+    }
+  });
 }
 
-// // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
-// // When the user clicks on <span> (x), close the modal
-// span.onclick = function() {
-//   modal.style.display = "none";
-// }
-// const modal = document.getElementById('myModal')
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
