@@ -32,6 +32,7 @@ export const showMovies = (movie,moviesBox,index) => {
         });
       }
     });
+
   });
 
 }
@@ -47,18 +48,39 @@ export const showDetails = (movie,moviesBox) => {
   let duration = movie.Runtime;
   let imageUrl = movie.Poster;
   moviesBox.innerHTML += `
-      <div class="movieBox">
-          <img src="${imageUrl}" alt="poster" />
-          <div class="movieBody">
-            <h2>${title}</h2>
-            <p>Release date : ${released}</p>
-            <p>Duration : ${duration}</p>
-            <p>Actors : ${actors}</p>
-            <p>Director : ${director}</p>
-            <p>${description}</p>
-            <button>READ MORE</button>
+      <!-- The Modal -->
+      <div class="modal" id="myModal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="detailContent">
+            <div class="detailPoster">
+              <img src="${imageUrl}" alt="poster" />
+            </div>
+            <div class="detailmovieBody">
+              <h2>${title}</h2>
+              <p>Release date : ${released}</p>
+              <p>Duration : ${duration}</p>
+              <p>Actors : ${actors}</p>
+              <p>Director : ${director}</p>
+              <p>${description}</p>
+            </div>
           </div>
-                  
+        </div>     
       </div>
   `;
 }
+
+// // Get the <span> element that closes the modal
+// var span = document.getElementsByClassName("close")[0];
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function() {
+//   modal.style.display = "none";
+// }
+// const modal = document.getElementById('myModal')
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// }
