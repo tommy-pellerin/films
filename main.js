@@ -2,6 +2,8 @@ import { showMovies } from './results.js';
 import { showDetails } from './results.js';
 
 const moviesBox = document.getElementById('moviesBox');
+const modal = document.getElementById('modal')
+console.log(modal);
 const form = document.querySelector('form');
 const film = document.getElementById('search');
 let filmValue;
@@ -39,7 +41,7 @@ export async function fetchData(url) {
       console.log("showmovie done");
 
     });
-    
+    showDetailslistener()
   } catch (error) {
     console.error('Response error:', error.message);
   }
@@ -53,18 +55,55 @@ export async function fetchDetail(detailUrl) {
   const result = await response.json();
   console.log("fetcheDetails");
     
-  showDetails(result, moviesBox);
-  console.log("show datails finished");
+  showDetails(result, modal);
+  // console.log("show datails finished");
+  // showDetailslistener()
+  // console.log("showdetails listener fin");
+  closeDetailslistener()
+  console.log("closedetails listener fin");
   } catch (error) {
     console.error('Response error:', error.message);
   }
 }
 
-// let detailsButton = document.getElementById('details');
-// console.log(detailsButton);
-// detailsButton.addEventListener('click', (event) => {
-//   let index = event.target.getAttribute('data-index');
-//   let movie = results.Search[index];
-//   let detailUrl = 'http://www.omdbapi.com/?apikey=bd77e14&i=' + movie.imdbID;
-//   fetchDetail(detailUrl);
-// });
+//event listener part
+function showDetailslistener() {
+  let detailsButtons = document.querySelectorAll('.details');
+    
+    detailsButtons.forEach((button, buttonIndex) => {
+      // if (buttonIndex === index) {
+        button.addEventListener('click', (event) => {
+          console.log("detailsButton clicked");
+          // let index = event.target.getAttribute('data-index');
+          modal.style.display = "block";
+          console.log(buttonIndex);
+          let detailUrl = 'http://www.omdbapi.com/?apikey=bd77e14&i=' + button.dataset.imdbid;
+          fetchDetail(detailUrl);
+        });
+      // }
+
+    });
+}
+
+
+function closeDetailslistener() {
+  // const modal = document.getElementById('myModal')
+  
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    console.log("span clicked");
+    modal.style.display = "none";
+    // window.onclick = null; // Remove the window onclick event listener
+  }
+
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    console.log("window clicked");
+    modal.style.display = "none";
+    // window.onclick = null; // Remove the window onclick event listener
+  }
+}

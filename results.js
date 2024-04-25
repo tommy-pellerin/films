@@ -13,7 +13,7 @@ export const showMovies = (movie,moviesBox,index) => {
           <div class="movieBody">
             <h2>${title}</h2>
             <p>Release date : ${year}</p>
-            <button class="details" >READ MORE</button>
+            <button class="details" data-imdbid="${movie.imdbID}" >READ MORE</button>
           </div>
 
       </div>
@@ -21,39 +21,22 @@ export const showMovies = (movie,moviesBox,index) => {
 
   //Delay the execution of the code inside the setTimeout until after the current call stack has cleared.
   setTimeout(()=> {
-    let detailsButtons = document.querySelectorAll('.details');
+    // let detailsButtons = document.querySelectorAll('.details');
     
-    detailsButtons.forEach((button, buttonIndex) => {
-      if (buttonIndex === index) {
-        button.addEventListener('click', (event) => {
-          console.log("detailsButton clicked");
-          // let index = event.target.getAttribute('data-index');
-          // console.log("movie");
-          let detailUrl = 'http://www.omdbapi.com/?apikey=bd77e14&i=' + movie.imdbID;
-          fetchDetail(detailUrl);
-        });
-      }
+    // detailsButtons.forEach((button, buttonIndex) => {
+    //   if (buttonIndex === index) {
+    //     button.addEventListener('click', (event) => {
+    //       console.log("detailsButton clicked");
+    //       // let index = event.target.getAttribute('data-index');
+    //       // console.log("movie");
+    //       let detailUrl = 'http://www.omdbapi.com/?apikey=bd77e14&i=' + movie.imdbID;
+    //       fetchDetail(detailUrl);
+    //     });
+    //   }
 
-    });
+    // });
 
-    let movieboxes = document.querySelectorAll('.movieBox');
-    movieboxes.forEach((movieBox) => {
-        //Intersection Observer
-      const observer = new IntersectionObserver((entries)=>{
-        for(const entry of entries){
-          if (entry.isIntersecting) {
-            entry.target.animate([
-              {transform: 'translateX(-50px)',opacity:0},
-              {transform: 'translateX(0px)',opacity:1}
-            ], {
-              duration:500
-            })
-          }
-        }
-      })
-
-      observer.observe(movieBox)
-    });
+    animation()
 
   });
 
@@ -62,7 +45,7 @@ export const showMovies = (movie,moviesBox,index) => {
 
 }
 
-export const showDetails = (movie,moviesBox) => {
+export const showDetails = (movie,modal) => {
   console.log("details showed");
   // console.log(movie);
   let title = movie.Title;
@@ -72,9 +55,9 @@ export const showDetails = (movie,moviesBox) => {
   let description = movie.Plot;
   let duration = movie.Runtime;
   let imageUrl = movie.Poster;
-  moviesBox.innerHTML += `
+  modal.innerHTML = `
       <!-- The Modal -->
-      <div class="modal" id="myModal">
+      
         <!-- Modal content -->
         <div class="modal-content">
           <span class="close">&times;</span>
@@ -92,30 +75,30 @@ export const showDetails = (movie,moviesBox) => {
             </div>
           </div>
         </div>     
-      </div>
+      
   `;
 
   
   setTimeout(() => {
-    const modal = document.getElementById('myModal')
+    // const modal = document.getElementById('myModal')
   
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-      console.log("span clicked");
-      modal.style.display = "none";
-      // window.onclick = null; // Remove the window onclick event listener
-    }
+    // // Get the <span> element that closes the modal
+    // var span = document.getElementsByClassName("close")[0];
+    // // When the user clicks on <span> (x), close the modal
+    // span.onclick = function() {
+    //   console.log("span clicked");
+    //   modal.style.display = "none";
+    //   // window.onclick = null; // Remove the window onclick event listener
+    // }
   
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        console.log("window clicked");
-        modal.style.display = "none";
-        // window.onclick = null; // Remove the window onclick event listener
-      }
-    }
+    // // When the user clicks anywhere outside of the modal, close it
+    // window.onclick = function(event) {
+    //   if (event.target == modal) {
+    //     console.log("window clicked");
+    //     modal.style.display = "none";
+    //     // window.onclick = null; // Remove the window onclick event listener
+    //   }
+    // }
   });
 }
 
@@ -124,3 +107,24 @@ window.addEventListener('click',() => {
 })
 
 
+//Intersection observer 
+function animation() {
+  let movieboxes = document.querySelectorAll('.movieBox');
+    movieboxes.forEach((movieBox) => {
+        //Intersection Observer
+      const observer = new IntersectionObserver((entries)=>{
+        for(const entry of entries){
+          if (entry.isIntersecting) {
+            entry.target.animate([
+              {transform: 'translateX(-50px)',opacity:0},
+              {transform: 'translateX(0px)',opacity:1}
+            ], {
+              duration:500
+            })
+          }
+        }
+      })
+
+      observer.observe(movieBox)
+    });
+}
