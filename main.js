@@ -21,6 +21,7 @@ form.addEventListener('submit', function(event) {
   };
   // Fetch data immediately
   fetchData(url);
+  console.log("fetchData done");
 });
 
 //fetching first information part
@@ -34,6 +35,8 @@ export async function fetchData(url) {
     results.Search.forEach((movie,index) => {
       
       showMovies(movie, moviesBox, index);
+      console.log("showmovie done");
+
     });
   } catch (error) {
     console.error('Response error:', error.message);
@@ -49,7 +52,7 @@ export async function fetchDetail(detailUrl) {
   console.log("fetcheDetails");
     
   showDetails(result, moviesBox);
-  
+  console.log("show datails finished");
   } catch (error) {
     console.error('Response error:', error.message);
   }
