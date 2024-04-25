@@ -25,9 +25,9 @@ export const showMovies = (movie,moviesBox,index) => {
     detailsButtons.forEach((button, buttonIndex) => {
       if (buttonIndex === index) {
         button.addEventListener('click', (event) => {
-          console.log("test");
+          console.log("detailsButton clicked");
           // let index = event.target.getAttribute('data-index');
-          console.log(movie);
+          // console.log("movie");
           let detailUrl = 'http://www.omdbapi.com/?apikey=bd77e14&i=' + movie.imdbID;
           fetchDetail(detailUrl);
         });
@@ -39,8 +39,8 @@ export const showMovies = (movie,moviesBox,index) => {
 }
 
 export const showDetails = (movie,moviesBox) => {
-  console.log("details");
-  console.log(movie);
+  console.log("details showed");
+  // console.log(movie);
   let title = movie.Title;
   let released = movie.Released;
   let actors = movie.Actors;
@@ -79,17 +79,22 @@ export const showDetails = (movie,moviesBox) => {
     var span = document.getElementsByClassName("close")[0];
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
+      console.log("span clicked");
       modal.style.display = "none";
-      window.onclick = null; // Remove the window onclick event listener
+      // window.onclick = null; // Remove the window onclick event listener
     }
   
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
       if (event.target == modal) {
+        console.log("window clicked");
         modal.style.display = "none";
-        window.onclick = null; // Remove the window onclick event listener
+        // window.onclick = null; // Remove the window onclick event listener
       }
     }
   });
 }
 
+window.addEventListener('click',() => {
+  console.log("click");
+})

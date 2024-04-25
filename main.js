@@ -17,18 +17,18 @@ form.addEventListener('submit', function(event) {
   filmValue = film.value;
   
   if (filmValue){
-    url = 'temp.json'
+    url = 'http://www.omdbapi.com/?apikey=bd77e14&s=' + `${filmValue}`
   };
   // Fetch data immediately
   fetchData(url);
 });
 
 //fetching first information part
-async function fetchData(url) {
+export async function fetchData(url) {
   try {
     const response = await fetch(url);
     const results = await response.json();
-    console.log(results);
+    console.log("fetchDAta");
     moviesBox.innerHTML = ''
     // Assuming showMovies can handle an array of movies
     results.Search.forEach((movie,index) => {
@@ -39,14 +39,14 @@ async function fetchData(url) {
     console.error('Response error:', error.message);
   }
 }
-fetchData('temp.json');
+// fetchData('temp.json');
 
 //fetching details part
 export async function fetchDetail(detailUrl) {
   try {
   const response = await fetch(detailUrl);
   const result = await response.json();
-  console.log(result);
+  console.log("fetcheDetails");
     
   showDetails(result, moviesBox);
   
