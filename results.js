@@ -22,6 +22,7 @@ export const showMovies = (movie,moviesBox,index) => {
   //Delay the execution of the code inside the setTimeout until after the current call stack has cleared.
   setTimeout(()=> {
     let detailsButtons = document.querySelectorAll('.details');
+    
     detailsButtons.forEach((button, buttonIndex) => {
       if (buttonIndex === index) {
         button.addEventListener('click', (event) => {
@@ -32,9 +33,32 @@ export const showMovies = (movie,moviesBox,index) => {
           fetchDetail(detailUrl);
         });
       }
+
+    });
+
+    let movieboxes = document.querySelectorAll('.movieBox');
+    movieboxes.forEach((movieBox) => {
+        //Intersection Observer
+      const observer = new IntersectionObserver((entries)=>{
+        for(const entry of entries){
+          if (entry.isIntersecting) {
+            entry.target.animate([
+              {transform: 'translateX(-50px)',opacity:0},
+              {transform: 'translateX(0px)',opacity:1}
+            ], {
+              duration:500
+            })
+          }
+        }
+      })
+
+      observer.observe(movieBox)
     });
 
   });
+
+  
+  
 
 }
 
@@ -98,3 +122,5 @@ export const showDetails = (movie,moviesBox) => {
 window.addEventListener('click',() => {
   console.log("click");
 })
+
+

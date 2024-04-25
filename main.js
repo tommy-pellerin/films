@@ -18,10 +18,11 @@ form.addEventListener('submit', function(event) {
   
   if (filmValue){
     url = 'http://www.omdbapi.com/?apikey=bd77e14&s=' + `${filmValue}`
+    console.log(url);
   };
   // Fetch data immediately
   fetchData(url);
-  console.log("fetchData done");
+  // console.log("fetchData done");
 });
 
 //fetching first information part
@@ -38,11 +39,12 @@ export async function fetchData(url) {
       console.log("showmovie done");
 
     });
+    
   } catch (error) {
     console.error('Response error:', error.message);
   }
 }
-// fetchData('temp.json');
+fetchData('temp.json');
 
 //fetching details part
 export async function fetchDetail(detailUrl) {
