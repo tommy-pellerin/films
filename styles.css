@@ -34,14 +34,42 @@ form{
 
 /* submit */
 .submitBox{
-  /* border: 2px solid green; */
+  margin-top: 10px;
 }
 
-#submit{
+/* #submit{
   background-color: rgb(128, 128, 253);
   border: 1px solid white;
   border-radius: 5rem;
-  margin-top: 10px;
+  
   width: 20rem;
   height: 2rem;
+} */
+
+/* movies styles */
+.movieBox{
+  border: 2px solid grey;
+  border-radius: 2rem;
+  padding: 1rem;
+  display: flex; 
+  margin-top: 10px; 
+  margin-bottom: 10px; 
+}
+
+.movieBody{
+  margin: 1rem;
+}
+
+/* buttons */
+button{
+  background-color: rgb(128, 128, 253);
+  border: 1px solid white;
+  border-radius: 5rem;
+  width: 20rem;
+  height: 2rem;
+  color: white;
+}
+
+button:hover{
+
 }
