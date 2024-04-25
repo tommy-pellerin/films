@@ -1,0 +1,47 @@
+.container{
+  width:80vw;
+  margin: 0 auto;
+}
+
+form{
+  border: 2px solid black;
+  padding:10px;
+}
+
+/* searching */
+.searchBox{
+  height: 2.5rem;
+  border: 2px solid black;
+  border-radius: 5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: flex;
+}
+
+#search{
+  height: 70%;
+  flex: auto;
+  border: none;
+  align-self: center;
+}
+
+.searchIcon{
+  flex: 2fr;
+  width: 2rem;
+  height: auto;
+  align-self: center;
+}
+
+/* submit */
+.submitBox{
+  /* border: 2px solid green; */
+}
+
+#submit{
+  background-color: rgb(128, 128, 253);
+  border: 1px solid white;
+  border-radius: 5rem;
+  margin-top: 10px;
+  width: 20rem;
+  height: 2rem;
+}
