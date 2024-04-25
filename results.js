@@ -36,7 +36,7 @@ export const showMovies = (movie,moviesBox,index) => {
 
     // });
 
-    animation()
+    listingAnimation()
 
   });
 
@@ -99,6 +99,7 @@ export const showDetails = (movie,modal) => {
     //     // window.onclick = null; // Remove the window onclick event listener
     //   }
     // }
+    detailAnimation();
   });
 }
 
@@ -108,7 +109,7 @@ window.addEventListener('click',() => {
 
 
 //Intersection observer 
-function animation() {
+function listingAnimation() {
   let movieboxes = document.querySelectorAll('.movieBox');
     movieboxes.forEach((movieBox) => {
         //Intersection Observer
@@ -127,4 +128,27 @@ function animation() {
 
       observer.observe(movieBox)
     });
+}
+
+function detailAnimation() {
+  let modal = document.getElementsByClassName("modal-content")[0]
+    console.log(modal);
+    //Intersection Observer
+    const observer = new IntersectionObserver((entries)=>{
+      for(const entry of entries){
+        if (entry.isIntersecting) {
+          entry.target.animate([
+            // keyframes
+            { transform: 'scale(0)', opacity: 0 }, 
+            { transform: 'scale(1)', opacity: 1 }
+          ], {
+            // options d'animation
+            duration: 500,
+            easing: 'ease-out',
+          })
+        }
+      }
+    })
+
+    observer.observe(modal)
 }

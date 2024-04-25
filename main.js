@@ -75,6 +75,8 @@ function showDetailslistener() {
         button.addEventListener('click', (event) => {
           console.log("detailsButton clicked");
           // let index = event.target.getAttribute('data-index');
+          //initate the block
+          modal.innerHTML = ''
           modal.style.display = "block";
           console.log(buttonIndex);
           let detailUrl = 'http://www.omdbapi.com/?apikey=bd77e14&i=' + button.dataset.imdbid;
