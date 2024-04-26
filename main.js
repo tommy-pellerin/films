@@ -19,7 +19,7 @@ form.addEventListener('submit', function(event) {
   filmValue = film.value;
   
   if (filmValue){
-    url = 'http://www.omdbapi.com/?apikey=bd77e14&s=' + `${filmValue}`
+    url = 'https://www.omdbapi.com/?apikey=bd77e14&s=' + `${filmValue}`
     // console.log(url);
   };
   // Fetch data immediately
@@ -84,7 +84,7 @@ function showDetailslistener() {
           modal.innerHTML = ''
           modal.style.display = "block";
           // console.log(buttonIndex);
-          let detailUrl = 'http://www.omdbapi.com/?apikey=bd77e14&i=' + button.dataset.imdbid;
+          let detailUrl = 'https://www.omdbapi.com/?apikey=bd77e14&i=' + button.dataset.imdbid;
           fetchDetail(detailUrl);
         });
       // }
