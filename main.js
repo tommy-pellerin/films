@@ -3,7 +3,7 @@ import { showDetails } from './results.js';
 
 const moviesBox = document.getElementById('moviesBox');
 const modal = document.getElementById('modal')
-console.log(modal);
+// console.log(modal);
 const form = document.querySelector('form');
 const film = document.getElementById('search');
 let filmValue;
@@ -20,7 +20,7 @@ form.addEventListener('submit', function(event) {
   
   if (filmValue){
     url = 'http://www.omdbapi.com/?apikey=bd77e14&s=' + `${filmValue}`
-    console.log(url);
+    // console.log(url);
   };
   // Fetch data immediately
   fetchData(url);
@@ -32,35 +32,38 @@ export async function fetchData(url) {
   try {
     const response = await fetch(url);
     const results = await response.json();
-    console.log("fetchDAta");
+    // console.log("fetchDAta");
     moviesBox.innerHTML = ''
     // Assuming showMovies can handle an array of movies
     results.Search.forEach((movie,index) => {
       
       showMovies(movie, moviesBox, index);
-      console.log("showmovie done");
+      // console.log("showmovie done");
 
     });
+    // console.log("All movies shown");
     showDetailslistener()
+    // console.log("after show detail listener dans la fonction fetchData");
   } catch (error) {
     console.error('Response error:', error.message);
   }
 }
-fetchData('temp.json');
+// fetchData('temp.json');
 
 //fetching details part
 export async function fetchDetail(detailUrl) {
   try {
   const response = await fetch(detailUrl);
   const result = await response.json();
-  console.log("fetcheDetails");
+  // console.log("fetcheDetails");
     
   showDetails(result, modal);
   // console.log("show datails finished");
   // showDetailslistener()
   // console.log("showdetails listener fin");
   closeDetailslistener()
-  console.log("closedetails listener fin");
+
+  // console.log("closedetails listener fin dans la fonction fetchdetails");
   } catch (error) {
     console.error('Response error:', error.message);
   }
@@ -68,17 +71,19 @@ export async function fetchDetail(detailUrl) {
 
 //event listener part
 function showDetailslistener() {
+  // console.log("Je suis dans la fonction show detail listener");
   let detailsButtons = document.querySelectorAll('.details');
     
     detailsButtons.forEach((button, buttonIndex) => {
       // if (buttonIndex === index) {
+        // console.log("J'itere les boutons dans la fonction show detail listener");
         button.addEventListener('click', (event) => {
-          console.log("detailsButton clicked");
+          // console.log("detailsButton clicked");
           // let index = event.target.getAttribute('data-index');
           //initate the block
           modal.innerHTML = ''
           modal.style.display = "block";
-          console.log(buttonIndex);
+          // console.log(buttonIndex);
           let detailUrl = 'http://www.omdbapi.com/?apikey=bd77e14&i=' + button.dataset.imdbid;
           fetchDetail(detailUrl);
         });
@@ -89,13 +94,14 @@ function showDetailslistener() {
 
 
 function closeDetailslistener() {
+  // console.log("Je suis dans la fonction closeDetailslistener");
   // const modal = document.getElementById('myModal')
   
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
-    console.log("span clicked");
+    // console.log("span clicked");
     modal.style.display = "none";
     // window.onclick = null; // Remove the window onclick event listener
   }
@@ -104,8 +110,8 @@ function closeDetailslistener() {
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
-    console.log("window clicked");
+    // console.log("window clicked");
     modal.style.display = "none";
-    // window.onclick = null; // Remove the window onclick event listener
+    window.onclick = null; // Remove the window onclick event listener
   }
 }

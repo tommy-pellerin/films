@@ -46,7 +46,7 @@ export const showMovies = (movie,moviesBox,index) => {
 }
 
 export const showDetails = (movie,modal) => {
-  console.log("details showed");
+  // console.log("details showed");
   // console.log(movie);
   let title = movie.Title;
   let released = movie.Released;
@@ -103,9 +103,9 @@ export const showDetails = (movie,modal) => {
   });
 }
 
-window.addEventListener('click',() => {
-  console.log("click");
-})
+// window.addEventListener('click',() => {
+//   console.log("click");
+// })
 
 
 //Intersection observer 
@@ -115,6 +115,7 @@ function listingAnimation() {
         //Intersection Observer
       const observer = new IntersectionObserver((entries)=>{
         for(const entry of entries){
+          // console.log("test");
           if (entry.isIntersecting) {
             entry.target.animate([
               {transform: 'translateX(-50px)',opacity:0},
@@ -132,7 +133,7 @@ function listingAnimation() {
 
 function detailAnimation() {
   let modal = document.getElementsByClassName("modal-content")[0]
-    console.log(modal);
+    // console.log(modal);
     //Intersection Observer
     const observer = new IntersectionObserver((entries)=>{
       for(const entry of entries){
